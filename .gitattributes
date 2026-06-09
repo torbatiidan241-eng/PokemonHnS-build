@@ -1,6 +1,12 @@
+* text=auto eol=lf
+
 *.pal binary
 *.gbapal binary
 *.png binary
 *.4bpp binary
 *.8bpp binary
 *.lz binary
+*.bin binary
+*.dat binary
+*.o binary
+*.a binary
