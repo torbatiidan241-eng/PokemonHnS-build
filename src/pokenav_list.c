@@ -985,20 +985,18 @@ static bool32 CopyPokenavListMenuTemplate(struct PokenavListSub *dest, const str
     dest->listWindow.tileOffset = tileOffset;
     dest->bufferItemFunc = template->bufferItemFunc;
     dest->iconDrawFunc = template->iconDrawFunc;
-    dest->listWindow.fillValue = template->fillValue;
+    dest->listWindow.fillValue = 1; // Adjust this ID (e.g., 1 or 2) to match the blue palette
     dest->listWindow.x = template->item_X + 120;
-    // Updated Y position: moved down by 16 pixels
-    dest->listWindow.y = template->listTop + 16;
+    dest->listWindow.y = template->listTop; // Reset to default
     dest->listWindow.width = template->windowWidth;
     dest->listWindow.fontId = template->fontId;
 
     window.bg = bgTemplate->bg;
     window.tilemapLeft = (template->item_X / 8) + 15;
-    // Updated Tile position: moved down by 2 tiles (2 * 8 = 16 pixels)
-    window.tilemapTop = 2;
+    window.tilemapTop = 0; // Reset to default
     window.width = template->windowWidth;
     window.height = 32;
-    window.paletteNum = template->fillValue;
+    window.paletteNum = 1; // Ensure this matches the fillValue above
     window.baseBlock = tileOffset + 2;
 
     dest->listWindow.windowId = AddWindow(&window);
