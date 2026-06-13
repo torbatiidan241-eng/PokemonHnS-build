@@ -13,8 +13,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev
+
       - name: Build Tools
-        run: make tools
+        run: |
+          make tools
+          # Force build agbcc specifically
+          cd tools/agbcc
+          ./build.sh
+          cd ../..
 
       - name: Build ROM
         run: |
