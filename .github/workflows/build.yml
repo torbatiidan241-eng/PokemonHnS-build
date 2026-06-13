@@ -12,12 +12,12 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi build-essential libpng-dev
 
-      - name: Build ROM
+      - name: Build
         run: |
           make clean
-          make
+          make modern
           
       - name: Upload ROM
         uses: actions/upload-artifact@v4
