@@ -16,9 +16,8 @@ jobs:
 
       - name: Build
         run: |
-          make clean
           make modern
-          
+
       - name: Upload ROM
         uses: actions/upload-artifact@v4
         with:
