@@ -1,40 +1,26 @@
-name: Build
+name: Build ROM
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential binutils-arm-none-eabi gcc-arm-none-eabi libpng-dev
-
-      - name: Build tools
-        run: |
-          # Ensure tools are compiled before the ROM build
-          make tools
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi
 
       - name: Build ROM
         run: |
-          # Use "make modern" as required by HnS/Modern Emerald projects
-          make modern
+          make clean
+          make
           
-      - name: Upload ROM Artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload ROM
+        uses: actions/upload-artifact@v3
         with:
-          name: rom-build
-          path: |
-            *.gba
-            build/
+          name: poke_rom
+          path: "*.gba"
